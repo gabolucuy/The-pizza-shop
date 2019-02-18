@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :other_dishes
   resources :sizes
   resources :crusts
   resources :sauces
