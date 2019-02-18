@@ -26,7 +26,7 @@ Crust.create(name: "Thick")
 Crust.create(name: "Filled with cheese")
 
 #Ingredients
-(1..10).each do
+10.times do
 	Ingredient.create(name: Faker::Food.ingredient)
 end
 
@@ -37,6 +37,6 @@ PizzaType.create(name: "Veggie")
 PizzaType.create(name: "Simple")
 
 #Other dishes
-NonPizza.create(name: "Spaghetti")
-NonPizza.create(name: "Lasagna")
-NonPizza.create(name: "Salad")
+OtherDish.create(name: "Spaghetti")
+OtherDish.create(name: "Lasagna")
+OtherDish.create(name: "Salad")
