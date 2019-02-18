@@ -11,7 +11,8 @@ The following patters are used in this project:
 
 The project uses JSON for communication.
 For data storage this projects uses Ruby on Rails default database (SQLite).
-Aditional the next diagrams represent part of the class model design.
+
+Additional the next diagrams represent part of the class model design.
 
 Class diagram: https://drive.google.com/open?id=1J1kVwjdkbhH9Grerr_hTYIXIwL2_UBpu
 
@@ -34,3 +35,6 @@ To run the seed.rb file, run the following command:
 ```
 rake db:migrate db:seed
 ```
+## Important considerations
+
+This project was developed with Ruby on Rails Framework version '5.2.1' and with ruby version '2.4.1'
