@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_042545) do
+ActiveRecord::Schema.define(version: 2019_02_18_044129) do
 
   create_table "cheeses", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,21 @@ ActiveRecord::Schema.define(version: 2019_02_18_042545) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pizzas", force: :cascade do |t|
+    t.integer "cheese_id"
+    t.integer "crust_id"
+    t.integer "pizza_type_id"
+    t.integer "sauce_id"
+    t.integer "size_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cheese_id"], name: "index_pizzas_on_cheese_id"
+    t.index ["crust_id"], name: "index_pizzas_on_crust_id"
+    t.index ["pizza_type_id"], name: "index_pizzas_on_pizza_type_id"
+    t.index ["sauce_id"], name: "index_pizzas_on_sauce_id"
+    t.index ["size_id"], name: "index_pizzas_on_size_id"
   end
 
   create_table "sauces", force: :cascade do |t|
