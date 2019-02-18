@@ -6,7 +6,7 @@ RSpec.describe Pizza, type: :model do
   it { should belong_to :pizza_type }
   it { should belong_to :sauce }
   it { should belong_to :size }
-
+  it { should have_many(:pizza_ingredients) }
   it { should validate_presence_of(:cheese) }
   it { should validate_presence_of(:crust) }
   it { should validate_presence_of(:pizza_type) }
