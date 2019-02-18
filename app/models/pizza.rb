@@ -6,6 +6,7 @@ class Pizza < ApplicationRecord
   belongs_to :size
   has_many :pizza_ingredients
   has_many :ingredients, through: :pizza_ingredients
+  has_one :order
   validates_presence_of :cheese
   validates_presence_of :crust
   validates_presence_of :pizza_type
