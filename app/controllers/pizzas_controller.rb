@@ -1,5 +1,5 @@
 class PizzasController < ApplicationController
-  before_action :set_pizza, only: [:show, :update, :destroy]
+  before_action :set_pizza, only: [:show, :update, :destroy,:add_ingredient, :ingredients]
 
   # GET /pizzas
   def index
@@ -36,6 +36,17 @@ class PizzasController < ApplicationController
   # DELETE /pizzas/1
   def destroy
     @pizza.destroy
+  end
+
+  def add_ingredient
+    params[:ingredient_ids].each do |ingredient_id|
+      @pizza.add_ingredient(ingredient_id)
+    end
+    render json: @pizza
+  end
+
+  def ingredients
+    render json: @pizza.ingredients
   end
 
   private

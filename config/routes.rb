@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :pizza_ingredients
   resources :ingredients
-  resources :pizzas
+  resources :pizzas do
+    member do
+      post 'add_ingredient'
+      get 'ingredients'
+    end
+  end
   resources :other_dishes
   resources :sizes
   resources :crusts

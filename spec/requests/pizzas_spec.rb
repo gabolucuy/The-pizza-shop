@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Pizzas", type: :request do
+RSpec.describe "GET /pizzas", type: :request do
   let!(:pizzas) { create_list(:pizza, 10) }
   let!(:pizza_id) { pizzas.last.id }
   describe "GET /pizzas" do
@@ -103,6 +103,62 @@ RSpec.describe "Pizzas", type: :request do
     before { delete "/pizzas/#{pizza_id}" }
     it "Returns status code 204" do
       expect(response).to have_http_status(204)
+    end
+  end
+
+  describe "POST /pizza/:id/add_ingredient/:ingredient_id" do
+    let!(:ingredient) { create :ingredient }
+    let!(:pizza) { create :pizza }
+    let!(:ingredient_ids) { [] }
+    let!(:ingredients) { create_list:ingredient, 10 }
+    before do
+      ingredients.each do |ingredient|
+        ingredient_ids<<ingredient.id
+      end
+    end
+    context "when one ingredient is added" do
+      before do
+        ingredient_ids = []
+        ingredient_ids<<ingredient.id
+      end
+      before { post "/pizzas/#{pizza.id}/add_ingredient",params: {ingredient_ids: ingredient_ids} }
+      it "returns a status code 200" do
+        expect(response).to have_http_status(200)
+      end
+    end
+    context "when more than one ingredient is added" do
+
+      before { post "/pizzas/#{pizza.id}/add_ingredient",params: {ingredient_ids: ingredient_ids} }
+      it "returns a status code 200" do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+  describe "GET /pizza/:id/ingredients" do
+    let!(:ingredient) { create :ingredient }
+    let!(:pizza) { create :pizza }
+
+    context "when the pizza has one ingredient added" do
+      let!(:pizza_ingredients) { create :pizza_ingredient, pizza: pizza, ingredient:ingredient}
+      before { get "/pizzas/#{pizza.id}/ingredients"}
+      it "returns the ingredient added to the pizza" do
+        expect(json.size).to eq(1)
+      end
+    end
+
+    context "when the pizza has more than one ingredient added" do
+      let!(:ingredient_ids) { [] }
+      let!(:ingredients) { create_list:ingredient, 10 }
+      before do
+        ingredients.each do |ingredient|
+          create :pizza_ingredient, pizza: pizza, ingredient:ingredient
+          ingredient_ids<<ingredient.id
+        end
+      end
+      before { get "/pizzas/#{pizza.id}/ingredients"}
+      it "returns all ingredients added to the pizza" do
+        expect(json.size).to eq(ingredients.size)
+      end
     end
   end
 
