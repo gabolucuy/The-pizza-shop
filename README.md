@@ -11,6 +11,26 @@ The following patters are used in this project:
 
 The project uses JSON for communication.
 For data storage this projects uses Ruby on Rails default database (SQLite).
-Aditional the next diagrams represent part of the design.
-Use cases: https://drive.google.com/open?id=1V9qtAAZ9MCsPDY7ylbVBdJjTPUTe13kr
+Aditional the next diagrams represent part of the class model design.
+
 Class diagram: https://drive.google.com/open?id=1J1kVwjdkbhH9Grerr_hTYIXIwL2_UBpu
+
+## Testing
+The followings gem where used to write all the tests:
+
+```
+gem 'rspec-rails', '~> 3.8'
+gem 'faker
+gem 'factory_bot_rails', '~> 4.0'
+gem 'shoulda-matchers', '~> 3.1'
+gem 'database_cleaner'
+```
+To run all the test run the following command:
+```
+bundle exec rspec
+```
+## Migration and Seeding
+To run the seed.rb file, run the following command:
+```
+rake db:migrate db:seed
+```
