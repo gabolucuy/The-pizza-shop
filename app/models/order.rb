@@ -13,4 +13,13 @@ class Order < ApplicationRecord
     end
   end
 
+  def next_state(delivery)
+		if self.state == "Box it" && delivery then self.state = "Delivery" end
+		if self.state == "Box it" && !delivery then self.state = "Dispatched" end
+		if self.state == "Cut it" then self.state = "Box it" end
+		if self.state == "Bake it" then self.state = "Cut it" end
+		if self.state == "In preparation" then self.state = "Bake it" end
+		self.save
+  end
+
 end

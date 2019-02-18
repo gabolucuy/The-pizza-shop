@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :orders do
+    member do
+      post 'next_state'
+    end
+  end
   resources :pizza_ingredients
   resources :ingredients
   resources :pizzas do

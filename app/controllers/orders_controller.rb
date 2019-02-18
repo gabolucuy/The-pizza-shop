@@ -38,6 +38,12 @@ class OrdersController < ApplicationController
     @order.destroy
   end
 
+  # POST Next status /order/next_status/1/true(false)
+  def next_state
+    @dish.next_state(params[:delivery])
+    render json: @dish
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
